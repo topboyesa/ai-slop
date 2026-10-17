@@ -1,14 +1,47 @@
-<title>AI SLOP</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI SLOP</title>
+    <style>
+        h2 { text-align: center; }
+        summary::-webkit-details-marker { display: none; }
+        details ul li:hover { background: #f2f2f2; cursor: pointer; }
+    </style>
+</head>
 
+<body>
 <h2>AI SLOP</h2>
 
-<ul>
-    <li>sort</li>
-    <li>search</li>
+<ul style="display: flex; justify-content: center; align-items: center; gap: 2rem; list-style: none; padding: 0 0 12px 0; border-bottom: 1px solid #ccc;">
+    <li style="position: relative;">
+        <details>
+            <summary style="cursor: pointer; list-style: none;">sort</summary>
+            <ul style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 1; margin: 8px 0 0 0; padding: 8px 0; min-width: 140px; background: #fff; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <li style="padding: 8px 16px;">Latest</li>
+                <li style="padding: 8px 16px;">Popular</li>
+                <li style="padding: 8px 16px;">Oldest</li>
+            </ul>
+        </details>
+    </li>
+    <li><a href="article-index.html" style="color: inherit; text-decoration: none;">index</a></li>
     <li>login</li>
     <li>sign-up</li>
+    <li style="position: relative; display: flex; align-items: center;">
+        <button id="search-toggle" aria-label="search" title="search" style="background: none; border: none; padding: 0; cursor: pointer; color: inherit; display: block;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display: block;">
+            <circle cx="10.5" cy="10.5" r="6.5"></circle>
+            <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+        </svg>
+        </button>
+        <input id="search-input" type="search" hidden placeholder="Search" aria-label="Search articles" style="position: absolute; left: calc(100% + 12px); top: 50%; transform: translateY(-50%); width: 200px; border: none; border-bottom: 2px solid currentColor; background: none; font: inherit; color: inherit; padding: 4px 0; outline: none;">
+    </li>
 </ul>
 
+<p id="no-results" hidden style="text-align: center;">No articles found.</p>
+
+<article id="post-1">
 <h2>"if the product is free then you're the product"</h2>
 <p>
     So I volunteered to a business. I just wanted to build an app for a business that didn't need it for my portfolio. Hello rectuiters, haha.
@@ -23,7 +56,9 @@
 
     I love my job. I do what I like. Where I like. With who I like. How I like. No play.
 </p>
+</article>
 
+<article id="post-2">
 <h2>I'm Sorry but Microsoft Copilot is shit</h2>
 <p>
     A year has gone-by ever since i used copilot for the first time 
@@ -58,7 +93,9 @@
     So spin up your apps. Write a simple blog in plain html and center a div or two. That is the real deal.
 
 </p>
+</article>
 
+<article id="post-3">
 <h2>The future is only for people who think ai isn't gonna replace them</h2>
 <p>
     Do you think ai is gonna replace you? Are you worried? Like a scared little cat? Worry no more, I make ai my slave.
@@ -80,7 +117,38 @@
     <br><br>
 
 
-    <i style="text-align: right;">Wednesday 15th October,2026. 0049 HRS</i>
+    <i><time datetime="2026-10-15T00:49" style="display: block; text-align: right;">Thursday 15th October, 2026. 0049 HRS</time></i>
 </p>
+</article>
 
 <!--Slop Bot-->
+
+<script>
+    var toggle = document.getElementById("search-toggle");
+    var input = document.getElementById("search-input");
+    var none = document.getElementById("no-results");
+    var articles = document.querySelectorAll("article");
+
+    function filter() {
+        var q = input.value.trim().toLowerCase();
+        var shown = 0;
+        articles.forEach(function (a) {
+            var match = a.textContent.toLowerCase().indexOf(q) !== -1;
+            a.hidden = !match;
+            if (match) shown++;
+        });
+        none.hidden = shown !== 0;
+    }
+
+    toggle.addEventListener("click", function () {
+        input.hidden = !input.hidden;
+        if (input.hidden) { input.value = ""; filter(); } else { input.focus(); }
+    });
+    input.addEventListener("input", filter);
+    input.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") toggle.click();
+    });
+</script>
+
+
+</body></html>
