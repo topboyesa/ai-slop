@@ -5,8 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Index - AI SLOP</title>
     <style>
+        :root { --bg: #fff; --fg: #000; }
+        :root.dark { --bg: #121212; --fg: #e8e8e8; color-scheme: dark; }
+        body { background: var(--bg); color: var(--fg); }
+        :root.dark a { color: #8ab4f8; }
         h2 { text-align: center; }
     </style>
+    <script>
+        (function () {
+            var mq = window.matchMedia("(prefers-color-scheme: dark)");
+            function apply() {
+                var saved = null;
+                try { saved = localStorage.getItem("theme"); } catch (e) {}
+                var hour = new Date().getHours();
+                var night = hour >= 19 || hour < 6;
+                document.documentElement.classList.toggle("dark", saved ? saved === "dark" : (night || mq.matches));
+            }
+            apply();
+            mq.addEventListener("change", apply);
+            setInterval(apply, 60000);
+        })();
+    </script>
 </head>
 
 <body>
