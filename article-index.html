@@ -21,15 +21,24 @@
                 var night = hour >= 19 || hour < 6;
                 document.documentElement.classList.toggle("dark", saved ? saved === "dark" : (night || mq.matches));
             }
+            function scheduleNext() {
+                var now = new Date(), next = new Date(now), h = now.getHours();
+                next.setMinutes(0, 0, 0);
+                if (h < 6) next.setHours(6);
+                else if (h < 19) next.setHours(19);
+                else { next.setDate(next.getDate() + 1); next.setHours(6); }
+                setTimeout(function () { apply(); scheduleNext(); }, next - now);
+            }
             apply();
+            scheduleNext();
             mq.addEventListener("change", apply);
-            setInterval(apply, 60000);
+            document.addEventListener("visibilitychange", apply);
         })();
     </script>
 </head>
 
 <body>
-<h2>Index By Order of Publication</h2>
+<h2>Index</h2>
 
 <p style="text-align: center;"><a href="index.html">&larr; back to main page</a></p>
 
@@ -37,7 +46,7 @@
     <ol style="margin: 0;">
         <li><a href="index.html#post-1">"if the product is free then you're the product"</a></li>
         <li><a href="index.html#post-2">I'm Sorry but Microsoft Copilot is shit</a></li>
-        <li><a href="index.html#post-3">The future is only for people who think ai isn't gonna replace them</a></li>
+        <li><a href="index.html#post-3">The future is only for people who think AI isn't gonna replace them</a></li>
     </ol>
 </nav>
 

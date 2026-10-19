@@ -15,6 +15,27 @@
         .sun { display: none; }
         :root.dark .sun { display: block; }
         :root.dark .moon { display: none; }
+        details ul li.active { font-weight: bold; }
+        .reactions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 1.5rem 0 0.5rem; }
+        .reactions button { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--line); border-radius: 20px; padding: 6px 12px; color: inherit; font: inherit; cursor: pointer; }
+        .reactions button:hover { background: var(--hover); }
+        .reactions button.on svg { fill: currentColor; }
+        .reactions svg { display: block; }
+        .reactions .views, .reactions .note { opacity: 0.7; }
+        :root.dark .reactions a { color: #8ab4f8; }
+        .comments { margin: 0.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid var(--line); }
+        .comment { padding: 10px 0; border-bottom: 1px solid var(--line); }
+        .comment-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+        .comment-head span { opacity: 0.7; font-size: 0.85em; }
+        .comment-body { margin-top: 4px; white-space: pre-wrap; overflow-wrap: anywhere; }
+        .comment-delete { margin-left: auto; background: none; border: none; padding: 0; color: inherit; opacity: 0.7; cursor: pointer; font: inherit; font-size: 0.85em; text-decoration: underline; }
+        .comments form { margin-top: 12px; }
+        .comments textarea { display: block; width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); font: inherit; resize: vertical; }
+        .comments form button { margin-top: 8px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 20px; background: none; color: inherit; font: inherit; cursor: pointer; }
+        .comments form button:hover { background: var(--hover); }
+        .comments .error { margin-left: 10px; color: #c0392b; }
+        :root.dark .comments .error { color: #ff7b72; }
+        :root.dark .comments a { color: #8ab4f8; }
     </style>
     <script>
         (function () {
@@ -50,9 +71,9 @@
         <details>
             <summary style="cursor: pointer; list-style: none;">sort</summary>
             <ul style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 1; margin: 8px 0 0 0; padding: 8px 0; min-width: 140px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                <li style="padding: 8px 16px;">Latest</li>
-                <li style="padding: 8px 16px;">Popular</li>
-                <li style="padding: 8px 16px;">Oldest</li>
+                <li data-sort="latest" style="padding: 8px 16px;">Latest</li>
+                <li data-sort="popular" style="padding: 8px 16px;">Popular</li>
+                <li data-sort="oldest" style="padding: 8px 16px;">Oldest</li>
             </ul>
         </details>
     </li>
@@ -86,85 +107,92 @@
 
 <p id="no-results" hidden style="text-align: center;">No articles found.</p>
 
+<main id="articles">
 <article id="post-1">
 <h2>"if the product is free then you're the product"</h2>
 <p>
-    So I volunteered to a business. I just wanted to build an app for a business that didn't need it for my portfolio. Hello rectuiters, haha.
-    Reminds me of whatsapp Zuckeberg guy is definitely selling your data. Too much value for nothing. If I made whatsapp I would probably make you subscribe fool.
-    So yes, I got the job and did it till I burnt out. Yea, I go all out. AT the end of it the guy liked it. I wasn't impressed though. That's the problem. I usually expect to be blown away by myself.
+    So I volunteered to a business. I just wanted to build an app for a business that didn't need it for my portfolio. Hello recruiters, haha.
+    Reminds me of WhatsApp Zuckerberg guy is definitely selling your data. Too much value for nothing. If I made WhatsApp I would probably make you subscribe fool.
+    So yes, I got the job and did it till I burnt out. Yea, I go all out. At the end of it the guy liked it. I wasn't impressed though. That's the problem. I usually expect to be blown away by myself.
     Reminds me of a quote, "It is not about the destination it is the journey." Whatever.<br><br>
 
     At the end of it, I was thinking about something more complex and was gonna brag about it on my CV. So a win-win, hopefully.
     I was enjoying going to work a bit too much though. Maybe it was the women. I was working with 2 women. They had lots of stories
-    which they shared and I liked listening to. Whatever the say, 'A person who enjoys Monday is either dating a co-worker, stealing from work or both'. I was doing none. I enjoyed it none-the-less. 
+    which they shared and I liked listening to. Whatever they say, 'A person who enjoys Monday is either dating a co-worker, stealing from work or both'. I was doing none. I enjoyed it none-the-less. 
     I got more friends from it and finally learned to play chess. This is chess not checkers foo. <br><br>
 
     I love my job. I do what I like. Where I like. With who I like. How I like. No play.
+    <br><br>
+
+    <i><time datetime="2026-10-13T21:40" style="display: block; text-align: right;">Tuesday 13th October, 2026. 2140 HRS</time></i>
 </p>
 </article>
 
 <article id="post-2">
 <h2>I'm Sorry but Microsoft Copilot is shit</h2>
 <p>
-    A year has gone-by ever since i used copilot for the first time 
-    and it complicated my code in a way that i have never seen before.
-    I am a barebones html guy. I only write what is necesarry, if the code will run
-    without the body tags, i prolly wouldn't write it. And I usually don't write it.
+    A year has gone-by ever since I used Copilot for the first time 
+    and it complicated my code in a way that I have never seen before.
+    I am a barebones HTML guy. I only write what is necessary, if the code will run
+    without the body tags, I prolly wouldn't write it. And I usually don't write it.
     Divs make things scary for me, let alone external CSS. But if you were learning programming
-    you wouldn't even know how linking it works and it used to be a newbie's worst nightmare, ai probably writes it for you
-    and links everything including the javascript. The more I write code and learn about new frameworks, the more i get blown away by centering
+    you wouldn't even know how linking it works and it used to be a newbie's worst nightmare, AI probably writes it for you
+    and links everything including the JavaScript. The more I write code and learn about new frameworks, the more I get blown away by centering
     a simple header on an unstyled page. Reminds me of something from the old days, a book, right?
-    Simple plain back text over a white page. The OG theme.<br><br>
+    Simple plain black text over a white page. The OG theme.<br><br>
 
-    All my headers are centralled by-the-way. It's crazy how it takes years of practice to master the basics. I have been programming since 2019.
-    And I haven't been inspired to write my first hello world yet. Yes "hello world" is an application, written mostly over backends. I wrote my first in objective C during my first year in Computer Science Class.
+    All my headers are centered by-the-way. It's crazy how it takes years of practice to master the basics. I have been programming since 2019.
+    And I haven't been inspired to write my first hello world yet. Yes "hello world" is an application, written mostly over backends. I wrote my first in Objective-C during my first year in Computer Science Class.
     And I didn't understand it. Yes, so just generate your full-stack app and call yourself a full-stack programmer with networking knowledge so you hopefully land that help desk job.
-    Honestly frontends alone are scary. Have you ever had the chance to design a fontend for an existing business?
-    It is so crazy. They usually have existing themes and stuff so it's first limiting on the things you can try out. But hey ask them the requirements, start a project on claude, paste them and voila!
+    Honestly frontends alone are scary. Have you ever had the chance to design a frontend for an existing business?
+    It is so crazy. They usually have existing themes and stuff so it's first limiting on the things you can try out. But hey ask them the requirements, start a project on Claude, paste them and voila!
     A fully responsive UI in 3 minutes... No, it doesn't attach pictures so you'll have to do that on your own. But isn't that like the whole design? Pictures, I mean. I guess you have to design it yourself. Kind of defeats the purpose, doesn't it?
     The design thing?<br><br>
 
-    So here we go again, I decide where to place the pictures and ai generates me an "acceptable webpage by todays standards with links scrolling to the same page, right?"
-    Yes. Oh, wait? How do I see it? Luckily ai gives a preview. I guess that caused lots of problems, cos it was fixed pretty early. It is funny how non-programmers don't know about index.html files, and that you can view them on a browser.
-    If I wrote sourcecode for the average client I would probably send it before payment because of how self-assuared I am that they wouldn't know how to handle it.
-    So yea, barebones html shows elite level knowledge. Real programming ball.<br><br>
+    So here we go again, I decide where to place the pictures and AI generates me an "acceptable webpage by today's standards with links scrolling to the same page, right?"
+    Yes. Oh, wait? How do I see it? Luckily AI gives a preview. I guess that caused lots of problems, cos it was fixed pretty early. It is funny how non-programmers don't know about index.html files, and that you can view them on a browser.
+    If I wrote source code for the average client I would probably send it before payment because of how self-assured I am that they wouldn't know how to handle it.
+    So yea, barebones HTML shows elite level knowledge. Real programming ball.<br><br>
 
-    Back to copilot. It writes some code, I have to change system variables. Install some things, lets say it got complex pretty quick. And I don't like complex stuff, easy does it.
-    I later quit my project because of how complex it gets i just lose interest when I am scrolling down 400 lines of code for a single web-page. I know it doesn't affect speed but where is the elegance?
-    Could you accomplish anything if you didn't have ai? what if you didn't have the internet to download packages and frameworks? What if you didn't have Visual Studio Code?
+    Back to Copilot. It writes some code, I have to change system variables. Install some things, let's say it got complex pretty quick. And I don't like complex stuff, easy does it.
+    I later quit my project because of how complex it gets I just lose interest when I am scrolling down 400 lines of code for a single web-page. I know it doesn't affect speed but where is the elegance?
+    Could you accomplish anything if you didn't have AI? what if you didn't have the internet to download packages and frameworks? What if you didn't have Visual Studio Code?
     What if you had to rely on the command line? That's where the real guys write.<br><br>
 
     On the positive side it is actually fun to build a full-stack app in 5 mins. Although I will lose interest in it in 5 mins. Real service doesn't require complexity. Just value.
-    So spin up your apps. Write a simple blog in plain html and center a div or two. That is the real deal.
+    So spin up your apps. Write a simple blog in plain HTML and center a div or two. That is the real deal.
+    <br><br>
 
+    <i><time datetime="2026-10-14T23:05" style="display: block; text-align: right;">Wednesday 14th October, 2026. 2305 HRS</time></i>
 </p>
 </article>
 
 <article id="post-3">
-<h2>The future is only for people who think ai isn't gonna replace them</h2>
+<h2>The future is only for people who think AI isn't gonna replace them</h2>
 <p>
-    Do you think ai is gonna replace you? Are you worried? Like a scared little cat? Worry no more, I make ai my slave.
-    In about a month or 2, ai is gonna help me finish a proposal that would've taken me a month or 2 in a single week or less on the free tier. Bogus. Absolute bonkers.
-    I don't even like using ai, this blog is purely hardcoded by me. No ai, tutorial, or stack-overflow. Nothing. I'm just the best.<br><br>
+    Do you think AI is gonna replace you? Are you worried? Like a scared little cat? Worry no more, I make AI my slave.
+    In about a month or 2, AI is gonna help me finish a proposal that would've taken me a month or 2 in a single week or less on the free tier. Bogus. Absolute bonkers.
+    I don't even like using AI, this blog is purely hardcoded by me. No AI, tutorial, or Stack Overflow. Nothing. I'm just the best.<br><br>
 
-    If ai is banned tomorrow I'll probably be fine. I'd still be a full-stack developer. My apps would just be much simpler, and with less code but I for sure would get the job done.
-    I am more scared of not having ai than being replaced by it. My writing for example, this is just a journal. If I wrote it with ai, it wouldn't help me process my thoughts and unburden myself.
+    If AI is banned tomorrow I'll probably be fine. I'd still be a full-stack developer. My apps would just be much simpler, and with less code but I for sure would get the job done.
+    I am more scared of not having AI than being replaced by it. My writing for example, this is just a journal. If I wrote it with AI, it wouldn't help me process my thoughts and unburden myself.
     This is therapy.<br><br>
 
     In an alternate universe I would rap but it's unfortunate programming picked me. Now I'm just stuck with it.
     <br><br>
 
-    Top Mathematicians are freaking out but I am just glad I could win a Nobel prize if i had interest in Mathematics and paid for a premium model.
+    Top Mathematicians are freaking out but I am just glad I could win a Nobel prize if I had interest in Mathematics and paid for a premium model.
     Bonkers!
     <br><br>
-    I am guessing that with the advancement of ai, my simple apps are quite rare. The odds of you replicating my knowledge gaps are of a crazy magnitude, that's what at work here. Knowlegde gaps.
-    But hey! At least no slop. If I made an ai I would call it no slop ai.
+    I am guessing that with the advancement of AI, my simple apps are quite rare. The odds of you replicating my knowledge gaps are of a crazy magnitude, that's what at work here. Knowledge gaps.
+    But hey! At least no slop. If I made an AI I would call it no slop AI.
     <br><br>
 
 
     <i><time datetime="2026-10-15T00:49" style="display: block; text-align: right;">Thursday 15th October, 2026. 0049 HRS</time></i>
 </p>
 </article>
+</main>
 
 <!--Slop Bot-->
 
@@ -173,12 +201,13 @@
     var input = document.getElementById("search-input");
     var none = document.getElementById("no-results");
     var articles = document.querySelectorAll("article");
+    articles.forEach(function (a) { a.dataset.search = a.textContent.toLowerCase(); });
 
     function filter() {
         var q = input.value.trim().toLowerCase();
         var shown = 0;
         articles.forEach(function (a) {
-            var match = a.textContent.toLowerCase().indexOf(q) !== -1;
+            var match = a.dataset.search.indexOf(q) !== -1;
             a.hidden = !match;
             if (match) shown++;
         });
@@ -204,6 +233,265 @@
         var dark = document.documentElement.classList.toggle("dark");
         try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
     });
+
+    // ----- sort, likes, dislikes and views (needs the PHP files; without them the page works as before) -----
+    var list = document.getElementById("articles");
+    var stats = {};
+    var loggedIn = false;
+    var csrf = "";
+    var sortMode = "";
+    var commentCounts = {};
+
+    var thumbUp = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path></svg>';
+    var thumbDown = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"></path><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"></path></svg>';
+
+    var commentIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+
+    function statOf(id) {
+        return stats[id] || { likes: 0, dislikes: 0, views: 0, mine: 0 };
+    }
+
+    function dateOf(a) {
+        var t = a.querySelector("time");
+        var ms = t ? Date.parse(t.getAttribute("datetime")) : NaN;
+        return isNaN(ms) ? 0 : ms;
+    }
+
+    // Popular = most likes minus dislikes; ties go to the one with more views, then the newer one.
+    function applySort() {
+        if (!sortMode) return;
+        var items = Array.prototype.slice.call(list.querySelectorAll("article"));
+        items.sort(function (a, b) {
+            if (sortMode === "latest") return dateOf(b) - dateOf(a);
+            if (sortMode === "oldest") return dateOf(a) - dateOf(b);
+            var sa = statOf(a.id), sb = statOf(b.id);
+            return ((sb.likes - sb.dislikes) - (sa.likes - sa.dislikes)) || (sb.views - sa.views) || (dateOf(b) - dateOf(a));
+        });
+        items.forEach(function (a) { list.appendChild(a); });
+    }
+
+    document.querySelectorAll("[data-sort]").forEach(function (li) {
+        li.addEventListener("click", function () {
+            sortMode = li.getAttribute("data-sort");
+            document.querySelectorAll("[data-sort]").forEach(function (o) { o.classList.toggle("active", o === li); });
+            applySort();
+            li.closest("details").open = false;
+        });
+    });
+
+    function bar(a) {
+        var b = a.querySelector(".reactions");
+        if (b) return b;
+        b = document.createElement("div");
+        b.className = "reactions";
+        b.innerHTML = '<button type="button" class="like" aria-label="like">' + thumbUp + '<span></span></button>' +
+            '<button type="button" class="dislike" aria-label="dislike">' + thumbDown + '<span></span></button>' +
+            '<button type="button" class="comment-toggle" aria-label="comments">' + commentIcon + '<span></span></button>' +
+            '<span class="views"></span>' +
+            '<span class="note" hidden><a href="login.php">Log in</a> to like or dislike.</span>';
+        b.querySelector(".like").addEventListener("click", function () { vote(a.id, 1); });
+        b.querySelector(".dislike").addEventListener("click", function () { vote(a.id, -1); });
+        b.querySelector(".comment-toggle").addEventListener("click", function () { toggleComments(a); });
+        a.appendChild(b);
+        return b;
+    }
+
+    function render(a) {
+        var s = statOf(a.id), b = bar(a);
+        b.querySelector(".like span").textContent = s.likes;
+        b.querySelector(".dislike span").textContent = s.dislikes;
+        b.querySelector(".like").classList.toggle("on", s.mine === 1);
+        b.querySelector(".dislike").classList.toggle("on", s.mine === -1);
+        b.querySelector(".comment-toggle span").textContent = commentCounts[a.id] || 0;
+        b.querySelector(".views").textContent = s.views + (s.views === 1 ? " view" : " views");
+    }
+
+    // Clicking the same button again takes your vote back.
+    function vote(id, value) {
+        var a = document.getElementById(id);
+        if (!loggedIn) { a.querySelector(".note").hidden = false; return; }
+        var next = statOf(id).mine === value ? 0 : value;
+        fetch("vote.php", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ csrf: csrf, post: id, vote: next })
+        })
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+            .then(function (d) {
+                stats[id] = { likes: d.likes, dislikes: d.dislikes, views: statOf(id).views, mine: d.mine };
+                render(a);
+            })
+            .catch(function () {});
+    }
+
+    // An article counts as viewed once its title has stayed fully on screen for a moment.
+    function watchViews() {
+        if (!("IntersectionObserver" in window)) return;
+        var timers = {};
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                var a = en.target.closest("article"), id = a.id;
+                if (en.isIntersecting) {
+                    timers[id] = setTimeout(function () {
+                        io.unobserve(en.target);
+                        fetch("view.php", {
+                            method: "POST",
+                            credentials: "same-origin",
+                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                            body: new URLSearchParams({ post: id })
+                        })
+                            .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+                            .then(function (d) {
+                                var s = statOf(id);
+                                s.views = d.views;
+                                stats[id] = s;
+                                render(a);
+                            })
+                            .catch(function () {});
+                    }, 1500);
+                } else {
+                    clearTimeout(timers[id]);
+                }
+            });
+        }, { threshold: 1 });
+        articles.forEach(function (a) {
+            var h = a.querySelector("h2");
+            if (h) io.observe(h);
+        });
+    }
+
+    // ----- comments -----
+    function sendComment(params) {
+        params.csrf = csrf;
+        return fetch("comments.php", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(params)
+        }).then(function (r) {
+            return r.json().catch(function () { return {}; }).then(function (d) {
+                if (!r.ok) throw new Error(d.error || "Something went wrong. Please try again.");
+                return d;
+            });
+        });
+    }
+
+    function toggleComments(a) {
+        var box = a.querySelector(".comments");
+        if (box) { box.hidden = !box.hidden; return; }
+        box = document.createElement("div");
+        box.className = "comments";
+        a.appendChild(box);
+        loadComments(a, box);
+    }
+
+    function loadComments(a, box) {
+        fetch("comments.php?post=" + encodeURIComponent(a.id), { credentials: "same-origin" })
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+            .then(function (d) { drawComments(a, box, d.comments || []); })
+            .catch(function () { box.textContent = "Could not load comments."; });
+    }
+
+    // Comment text is always inserted as plain text, never as HTML.
+    function drawComments(a, box, items) {
+        box.textContent = "";
+
+        items.forEach(function (c) {
+            var row = document.createElement("div");
+            row.className = "comment";
+
+            var head = document.createElement("div");
+            head.className = "comment-head";
+            var who = document.createElement("strong");
+            who.textContent = c.user;
+            var when = document.createElement("span");
+            when.textContent = new Date(c.ts * 1000).toLocaleString();
+            head.appendChild(who);
+            head.appendChild(when);
+
+            if (c.canDelete) {
+                var del = document.createElement("button");
+                del.type = "button";
+                del.className = "comment-delete";
+                del.textContent = "delete";
+                del.addEventListener("click", function () {
+                    if (!confirm("Delete this comment?")) return;
+                    sendComment({ action: "delete", id: c.id })
+                        .then(function (d) { commentCounts[a.id] = d.count; render(a); loadComments(a, box); })
+                        .catch(function (ex) { alert(ex.message); });
+                });
+                head.appendChild(del);
+            }
+
+            var body = document.createElement("div");
+            body.className = "comment-body";
+            body.textContent = c.body;
+
+            row.appendChild(head);
+            row.appendChild(body);
+            box.appendChild(row);
+        });
+
+        if (!items.length) {
+            var empty = document.createElement("p");
+            empty.textContent = "No comments yet.";
+            box.appendChild(empty);
+        }
+
+        if (!loggedIn) {
+            var ask = document.createElement("p");
+            ask.innerHTML = '<a href="login.php">Log in</a> to comment.';
+            box.appendChild(ask);
+            return;
+        }
+
+        var form = document.createElement("form");
+        var ta = document.createElement("textarea");
+        ta.rows = 3;
+        ta.maxLength = 1000;
+        ta.required = true;
+        ta.placeholder = "Write a comment...";
+        var send = document.createElement("button");
+        send.type = "submit";
+        send.textContent = "Post comment";
+        var err = document.createElement("span");
+        err.className = "error";
+        form.appendChild(ta);
+        form.appendChild(send);
+        form.appendChild(err);
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            err.textContent = "";
+            send.disabled = true;
+            sendComment({ action: "add", post: a.id, body: ta.value })
+                .then(function (d) { commentCounts[a.id] = d.count; render(a); loadComments(a, box); })
+                .catch(function (ex) { err.textContent = ex.message; send.disabled = false; });
+        });
+        box.appendChild(form);
+    }
+
+    fetch("comments.php", { credentials: "same-origin" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+            if (!d || d.error) return;
+            commentCounts = d.counts || {};
+            articles.forEach(function (a) { if (a.querySelector(".reactions")) render(a); });
+        })
+        .catch(function () {});
+
+    fetch("stats.php", { credentials: "same-origin" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+            if (!d || d.error) return;
+            stats = d.posts || {};
+            loggedIn = !!d.loggedIn;
+            csrf = d.csrf || "";
+            articles.forEach(render);
+            applySort();
+            watchViews();
+        })
+        .catch(function () {});
 
     toggle.addEventListener("click", function () {
         input.hidden = !input.hidden;
