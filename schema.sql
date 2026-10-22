@@ -62,3 +62,12 @@ CREATE TABLE IF NOT EXISTS admins (
 -- To make yourself an admin, sign up on the site first, then run this
 -- with your own username in place of yourusername:
 -- INSERT IGNORE INTO admins (user_id) SELECT id FROM users WHERE username = 'yourusername';
+
+-- Posts written from the site (write.php). Your three original posts stay in index.html;
+-- new posts start at id 4 so they never clash with post-1, post-2 and post-3.
+CREATE TABLE IF NOT EXISTS posts (
+    id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title      VARCHAR(200) NOT NULL,
+    body       TEXT         NOT NULL,
+    created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

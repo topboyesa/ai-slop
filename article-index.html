@@ -43,12 +43,30 @@
 <p style="text-align: center;"><a href="index.html">&larr; back to main page</a></p>
 
 <nav aria-label="Article index" style="width: fit-content; max-width: 100%; margin: 0 auto 1.5rem;">
-    <ol style="margin: 0;">
+    <ol id="article-list" style="margin: 0;">
         <li><a href="index.html#post-1">"if the product is free then you're the product"</a></li>
         <li><a href="index.html#post-2">I'm Sorry but Microsoft Copilot is shit</a></li>
         <li><a href="index.html#post-3">The future is only for people who think AI isn't gonna replace them</a></li>
     </ol>
 </nav>
+
+<script>
+    fetch("posts.php", { credentials: "same-origin" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+            if (!d || !d.posts) return;
+            var ol = document.getElementById("article-list");
+            d.posts.forEach(function (p) {
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                a.href = "index.html#" + p.id;
+                a.textContent = p.title;
+                li.appendChild(a);
+                ol.appendChild(li);
+            });
+        })
+        .catch(function () {});
+</script>
 
 </body>
 </html>
